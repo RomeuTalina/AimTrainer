@@ -1,5 +1,4 @@
 #include <raylib.h>
-/*#include "raygui.h"*/
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -95,7 +94,7 @@ int main(){
         if(!menuOpen){
             updatePlayerCamera(&player);
         }
-
+        
         Ray hitscanRay = (Ray) {player.camera.position, player.direction};
 
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
@@ -106,7 +105,6 @@ int main(){
                     break;
                 }
             }
-            
         }
 
         if(IsKeyPressed(KEY_F11)){
@@ -130,6 +128,9 @@ int main(){
         BeginMode3D(player.camera);
 
         DrawModel(floorModel, (Vector3){0, -0.1f, 0}, 1.0f, WHITE);
+
+        DrawCubeWires(player.pos, 1, 1, 1, BLACK);
+        DrawRay(hitscanRay, RED);
 
         for(int i = 0; i < NUM_TARGETS; i++){
             draw(targets->targets[i]);
